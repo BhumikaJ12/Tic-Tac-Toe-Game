@@ -1,5 +1,4 @@
-//Tic Tac Toe Game in Graphics with Mouse functionality.
-//Note: Save this file as Tic33.cpp  and put this file under bin directory of your turbo c++ compiler
+
 #include<graphics.h>
 #include<stdio.h>
 #include<conio.h>
@@ -55,7 +54,6 @@ void main()
 
 void gameloadingscreen()
 {
-    // graph();
      	setbkcolor(LIGHTBLUE);
 	settextstyle(1,0,5);
 	setcolor(WHITE);
@@ -67,8 +65,8 @@ void gameloadingscreen()
 	outtextxy(150,370,"Loading...");
       	for(int i=1;i<=150;i++)
        	{
-	  bar(150,400,200+i,420);
-	  delay(30);
+	  	bar(150,400,200+i,420);
+	  	delay(30);
        	} 
      	 //graph(); getch();
 } //end of gameloadingscreen()...............
@@ -103,130 +101,126 @@ void menuscreen()
 	        getmouse();   //px py click
      	 	if(px>=220&&px<=420&&py>=100&&py<=130&&click==1)
 	 	{	
-	   	  hidemouse();
-	   	  playerturn=1;
-	   	  gamestatus=0;
-	   	  resetboxes();
-	   	  gamescreen();
-	   	  break;
+	   	  	hidemouse();
+	   	  	playerturn=1;
+		   	gamestatus=0;
+		   	resetboxes();
+		   	gamescreen();
+		   	break;
 	 	} //end if.
       		else if(px>=220&&px<=420&&py>=160&&py<=190&&click==1)
 	        {
-	     	  hidemouse();
-	          scorescreen(); break;
+	     	  	hidemouse();
+	          	scorescreen(); break;
 	        }
       		else if(px>=220&&px<=420&&py>=220&&py<=250&&click==1)
 	    	{
-	      	 hidemouse();
-	         helpscreen(); break;
+	      	 	hidemouse();
+	         	helpscreen(); break;
 	        }
-      else if(px>=220&&px<=420 && py>=280 && py<=310 && click==1)
-	    {
-	      hidemouse();
-	      aboutscreen(); break;
-	    }
-      else  if(px>=220&&px<=420 && py>=340 && py<=370 && click==1)
-	    {
-	     hidemouse();
-	     inputnamescreen(); break;
+      		else if(px>=220&&px<=420 && py>=280 && py<=310 && click==1)
+	    	{
+	      		hidemouse();
+	      		aboutscreen(); break;
+	    	}
+      		else  if(px>=220&&px<=420 && py>=340 && py<=370 && click==1)
+	   	{
+	     		hidemouse();
+	     		inputnamescreen(); break;
 
-	    }
-      else if(px>=220&&px<=420&&py>=400&&py<=430 && click==1)
-	    {
-	     hidemouse(); exitgame();
-	    }
-       } //end while loop...
-
-
+	    	}
+      		else if(px>=220&&px<=420&&py>=400&&py<=430 && click==1)
+	    	{
+	     		hidemouse(); exitgame();
+	    	}
+       } 
    } //end menuscreen()....
-    void whichplayerturn();
-    char markx0;
-    void checkgamestatus();
 
-    void gamescreen()
-     {
-       delay(100);
-       cleardevice(); hidemouse(); setbkcolor(LIGHTBLUE);
-       setfillstyle(1,WHITE);
+   void whichplayerturn();
+   char markx0;
+   void checkgamestatus();
+
+   void gamescreen()
+   {
+       	delay(100);
+       	cleardevice(); hidemouse(); setbkcolor(LIGHTBLUE);
+       	setfillstyle(1,WHITE);
       
-       settextstyle(1,0,2); setcolor(WHITE);
-       outtextxy(20,20,combineplayernames());
+       	settextstyle(1,0,2); setcolor(WHITE);
+       	outtextxy(20,20,combineplayernames());
 
-       whichplayerturn();
+       	whichplayerturn();
 
-       board();
+       	board();
 
-       settextstyle(1,0,2);
-       bar3d(40,430,40+100,430+30,5,1);
-       outtextxy(70,430,"Exit..");
+       	settextstyle(1,0,2);
+       	bar3d(40,430,40+100,430+30,5,1);
+       	outtextxy(70,430,"Exit..");
        
-       initmouse(); showmouse();
-       checkgamestatus();
-       while(gamestatus==0)
+       	initmouse(); showmouse();
+       	checkgamestatus();
+       	while(gamestatus==0)
 	{
-	 getmouse();
+	 	getmouse();
+	  	if(px>=40&&px<=140&&py>=80&&py<=180&&click==1&&box[1]=='1')
+	   	{
+	      		box[1]=markx0;
+	      		gamescreen();
+	   	} 
 
-	  if(px>=40&&px<=140&&py>=80&&py<=180&&click==1&&box[1]=='1')
-	   {
-	      box[1]=markx0;
-	      //cout<<"display box[1]: "<<box[1];  getch();
-	      //reload gamescreen();
-	      gamescreen();
-	   } //end if.
+	   	else if(px>=150&&px<=250&&py>=80&&py<=180&&click==1&&box[2]=='2')
+	     	{
+			box[2]= markx0;
+			gamescreen();
+	     	}
 
-	   else if(px>=150&&px<=250&&py>=80&&py<=180&&click==1&&box[2]=='2')
-	     {
-		box[2]= markx0;
-		gamescreen();
-	     }//end else if.
+	    	else if(px>=260&&px<=360&&py>=80&&py<=180&&click==1&&box[3]=='3')
+	     	{
+			box[3]= markx0;
+			gamescreen();
+	     	}
 
-	    else if(px>=260&&px<=360&&py>=80&&py<=180&&click==1&&box[3]=='3')
-	     {
-		box[3]= markx0;
-		gamescreen();
-	     }//end else if.
+	    	else if(px>=40&&px<=140&&py>=190&&py<=290&&click==1&&box[4]=='4')
+	     	{
+			box[4]= markx0;
+			gamescreen();
+	     	}
 
-	    else if(px>=40&&px<=140&&py>=190&&py<=290&&click==1&&box[4]=='4')
-	     {
-		box[4]= markx0;
-		gamescreen();
-	     }//end else if.
+	    	else if(px>=150&&px<=250&&py>=190&&py<=290&&click==1&&box[5]=='5')
+	     	{
+			box[5]= markx0;
+			gamescreen();
+	     	}
 
-	    else if(px>=150&&px<=250&&py>=190&&py<=290&&click==1&&box[5]=='5')
-	     {
-		box[5]= markx0;
-		gamescreen();
-	     }//end else if.
+	    	else if(px>=260&&px<=360&&py>=190&&py<=290&&click==1&&box[6]=='6')
+	     	{
+			box[6]= markx0;
+			gamescreen();
+	     	}
 
-	    else if(px>=260&&px<=360&&py>=190&&py<=290&&click==1&&box[6]=='6')
-	     {
-		box[6]= markx0;
-		gamescreen();
-	     }//end else if.
+	    	else if(px>=40&&px<=140&&py>=300&&py<=400&&click==1&&box[7]=='7')
+	     	{
+			box[7]= markx0;
+			gamescreen();
+	     	}
 
-	    else if(px>=40&&px<=140&&py>=300&&py<=400&&click==1&&box[7]=='7')
-	     {
-		box[7]= markx0;
-		gamescreen();
-	     }//end else if.
+	    	else if(px>=150&&px<=250&&py>=300&&py<=400&&click==1&&box[8]=='8')
+	     	{
+			box[8]= markx0;
+			gamescreen();
+	     	}
 
-	    else if(px>=150&&px<=250&&py>=300&&py<=400&&click==1&&box[8]=='8')
-	     {
-		box[8]= markx0;
-		gamescreen();
-	     }//end else if.
+	    	else if(px>=260&&px<=360&&py>=300&&py<=400&&click==1&&box[9]=='9')
+	     	{
+			box[9]= markx0;
+			gamescreen();
+	     	}
 
-	    else if(px>=260&&px<=360&&py>=300&&py<=400&&click==1&&box[9]=='9')
-	     {
-		box[9]= markx0;
-		gamescreen();
-	     }//end else if.
-
-	    else if(px>=40&&px<=140&&py>=430&&py<=460&&click==1)
-	     {
-		hidemouse(); //to avoid image flicker patch on menuscreen
-		 menuscreen();
-	     }//end else if.
+	    	else if(px>=40&&px<=140&&py>=430&&py<=460&&click==1)
+	     	{
+			hidemouse(); //to avoid image flicker patch on menuscreen
+		 	menuscreen();
+	     	}
 
 	} //end  while loop...
 
@@ -234,40 +228,41 @@ void menuscreen()
 	char str[70];
 
 	if(gamestatus == 1)
-	 {
-	  whichplayerturn();
-	  settextstyle(1,0,3); setcolor(BLUE);
+	{
+	 	whichplayerturn();
+	  	settextstyle(1,0,3); setcolor(BLUE);
 
-	  strcpy(str,""); strcat(str,currentplayername);
-	  strcat(str, " Wins....!!");
-	  setfillstyle(1,WHITE);
-	  bar3d(410,60,620,250,10,1);
-	  outtextxy(420,80,str);
+	  	strcpy(str,""); strcat(str,currentplayername);
+	  	strcat(str, " Wins....!!");
+	  	setfillstyle(1,WHITE);
+	  	bar3d(410,60,620,250,10,1);
+	  	outtextxy(420,80,str);
 
-	  circle(520,190,50);
-	  circle(500,170,10);
-	  circle(540,170,10);
+	  	circle(520,190,50);
+	  	circle(500,170,10);
+	  	circle(540,170,10);
  
-	  ellipse(520,210,180,360,30,15); //happy smile.. set angle 180 - 360 degree
-	  savescore2file(gamestatus);
+	  	ellipse(520,210,180,360,30,15); //happy smile.. set angle 180 - 360 degree
+	  	savescore2file(gamestatus);
 
 	 } //end if..
 	else if(gamestatus == 2) //check for draw..
-	  {
-	  settextstyle(1,0,3); setcolor(GREEN);
+	{
+	  	settextstyle(1,0,3); setcolor(GREEN);
 
-	  strcpy(str,"");
-	  strcat(str, " It's Draw ....!!");
-	  setfillstyle(1,WHITE);
-	  bar3d(410,60,620,250,10,1);
-	  outtextxy(420,80,str);
-	  //add sad smiley here
-	  circle(520,190,50); //face..
-	  circle(500,170,10); //left eye.
-	  circle(540,170,10); //right eye.
+		strcpy(str,"");
+		strcat(str, " It's Draw ....!!");
+		setfillstyle(1,WHITE);
+		bar3d(410,60,620,250,10,1);
+		outtextxy(420,80,str);
+		
+	  	//adding sad smiley here
+	  	circle(520,190,50); //face..
+	  	circle(500,170,10); //left eye.
+	  	circle(540,170,10); //right eye.
 
-	  ellipse(520,210,0,180,30,15); //sad smile.. set angle 0 - 180 degree
-	  savescore2file(gamestatus);
+	  	ellipse(520,210,0,180,30,15); //sad smile.. set angle 0 - 180 degree
+	  	savescore2file(gamestatus);
 
 	  } //end else if..
 
@@ -276,7 +271,7 @@ void menuscreen()
      } //end gamescreen().............
 
 void savescore2file(int gamestatus)
-       {
+{
 	 time_t t1; //to save current date n time.
 	 t1= time(NULL);
 	 //cout<<current date is "<<ctime(&t1);
@@ -284,7 +279,7 @@ void savescore2file(int gamestatus)
 	 ofs.open("scores.txt",ios::app);
 	 char msg[100];
 	 if(gamestatus == 1) //win
-	  {                           //i guess \n not require.. saves empty line..
+	  {                           
 	     ofs<<"\n"<<firstplayername<<" v/s "<<secondplayername<<" & Won By "<<currentplayername<<". Dated:"<<ctime(&t1);
 	  }//end if.
 	 else if(gamestatus == 2)  //draw..
@@ -316,8 +311,8 @@ void checkgamestatus()
 	   if(
 	   box[1]!='1'&&box[2]!='2'&&box[3]!='3'&&box[4]!='4'
 	   &&box[5]!='5'&&box[6]!='6'&&box[7]!='7'&&box[8]!='8'
-	   &&box[9]!='9'
-	     )
+	   &&box[9]!='9')
+	     
 	      {
 	       gamestatus =2;
 
@@ -363,7 +358,6 @@ void whichplayerturn()
 
 void board()
      {
-  //  graph();
 	settextstyle(4,0,4); setcolor(BLUE);
 	setfillstyle(1,GREEN);
 	bar3d(30,70,360+10,400+10,20,1);
