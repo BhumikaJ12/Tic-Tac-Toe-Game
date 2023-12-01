@@ -1,129 +1,125 @@
 //Tic Tac Toe Game in Graphics with Mouse functionality.
 //Note: Save this file as Tic33.cpp  and put this file under bin directory of your turbo c++ compiler
-  #include<graphics.h>
-  #include<stdio.h>
-  #include<conio.h>
-  #include<dos.h>
-//  #include<iostream.h>
-  #include<stdlib.h>
-  #include<string.h>
-  #include<alloc.h>
-  #include<fstream.h>
-  #include<time.h>
+#include<graphics.h>
+#include<stdio.h>
+#include<conio.h>
+#include<dos.h>
+#include<stdlib.h>
+#include<string.h>
+#include<alloc.h>
+#include<fstream.h>
+#include<time.h>
 
- void graph(); //graph..
+void graph(); 
+void startgraph();
+void gameloadingscreen();
+void menuscreen();
+void gamescreen(); void scorescreen();
+void helpscreen(); void aboutscreen();
+void inputnamescreen(); void exitgame();
+void resetboxes();
+void board();
+void heading(char s[70]);
+char* getstring(char) ;
+void savescore2file(int gamestatus);
+void backbutton();
 
- void startgraph();
- void gameloadingscreen();
- void menuscreen();
-    void gamescreen(); void scorescreen();
-    void helpscreen(); void aboutscreen();
-    void inputnamescreen(); void exitgame();
- void resetboxes();
- void board();
- void heading(char s[70]);
- char* getstring(char) ;
- void savescore2file(int gamestatus);
- void backbutton();
-      //mouse functions..
-       void initmouse();
-       void showmouse();
-       void hidemouse() ;
-       void getmouse();
-       void setmouse() ;
+//mouse functions..
+void initmouse();
+void showmouse();
+void hidemouse() ;
+void getmouse();
+void setmouse() ;
 
 
 //list of global variables.
-       union REGS in,out;
-       int px =1, py =1;
-       int click =0 ;
-       char box[11];
-       int playerturn=1;
-      char firstplayername[70]="Player1";
-      char secondplayername[70]="Player2";
-      char currentplayername[70]="";
-      char* combineplayernames();
-      int gamestatus=0;
+union REGS in,out;
+int px =1, py =1;
+int click =0 ;
+char box[11];
+int playerturn=1;
+char firstplayername[70]="Player1";
+char secondplayername[70]="Player2";
+char currentplayername[70]="";
+char* combineplayernames();
+int gamestatus=0;
 
-    void main()
-    {
+void main()
+{
 	startgraph();
-       //	graph();
-
+       // graph();
 	gameloadingscreen();
 	menuscreen();
+        getch(); cleardevice(); closegraph();
+} //end main................................................................
 
-
-       getch(); cleardevice(); closegraph();
-    } //end main................................................................
-
-  void gameloadingscreen()
-   {
+void gameloadingscreen()
+{
     // graph();
-     setbkcolor(LIGHTBLUE);
-     settextstyle(1,0,5);
-     setcolor(WHITE);
-     outtextxy(100,100,"TIC-TAC-TOE");
-     setcolor(MAGENTA);
-     settextstyle(3,0,1);
-     outtextxy(400,143,"Fun Begins In A Moment....");
-     setfillstyle(1,WHITE);
-     outtextxy(150,370,"Loading...");
-      for(int i=1;i<=150;i++)
-       {
+     	setbkcolor(LIGHTBLUE);
+	settextstyle(1,0,5);
+	setcolor(WHITE);
+	outtextxy(100,100,"TIC-TAC-TOE");
+	setcolor(MAGENTA);
+	settextstyle(3,0,1);
+	outtextxy(400,143,"Fun Begins In A Moment....");
+	setfillstyle(1,WHITE);
+	outtextxy(150,370,"Loading...");
+      	for(int i=1;i<=150;i++)
+       	{
 	  bar(150,400,200+i,420);
 	  delay(30);
-       } //end for..
-      //graph(); getch();
-   } //end of gameloadingscreen()...............
-  void menuscreen()
-   {
-     delay(100); //put delay for mouse
-      cleardevice();
-      heading("Main Menu");
-      setfillstyle(1,LIGHTGRAY);
+       	} 
+     	 //graph(); getch();
+} //end of gameloadingscreen()...............
 
-      bar(220,100,220+200,100+30);
-      outtextxy(220+20,100,"Play Game");
+void menuscreen()
+{
+      	delay(100); //put delay for mouse
+      	cleardevice();
+      	heading("Main Menu");
+      	setfillstyle(1,LIGHTGRAY);
+      	bar(220,100,220+200,100+30);
+      	outtextxy(220+20,100,"Play Game");
 
-      bar(220,160,420,190);
-      outtextxy(240,160,"Scores");
+      	bar(220,160,420,190);
+      	outtextxy(240,160,"Scores");
 
-      bar(220,220,420,250);
-      outtextxy(240,220,"Help");
+      	bar(220,220,420,250);
+      	outtextxy(240,220,"Help");
 
-      bar(220,280,420,310);
-      outtextxy(240,280,"About");
+      	bar(220,280,420,310);
+      	outtextxy(240,280,"About");
 
-      bar(220,340,420,370);
-      outtextxy(240,340,"Input Names");
+      	bar(220,340,420,370);
+      	outtextxy(240,340,"Input Names");
 
-      bar(220,400,420,430);
-      outtextxy(240,400,"Exit");
+      	bar(220,400,420,430);
+      	outtextxy(240,400,"Exit");
 
-      initmouse(); showmouse();
-      while(1)
-       {
-	 getmouse();   //px py click
-      if(px>=220&&px<=420&&py>=100&&py<=130&&click==1)
-	 {
-	   hidemouse();
-	   playerturn=1;
-	   gamestatus=0;
-	   resetboxes();
-	   gamescreen();
-	   break;
-	 } //end if.
-      else if(px>=220&&px<=420&&py>=160&&py<=190&&click==1)
-	    {
-	     hidemouse();
-	     scorescreen(); break;
-	    }
-      else if(px>=220&&px<=420&&py>=220&&py<=250&&click==1)
-	    {
-	      hidemouse();
-	      helpscreen(); break;
-	    }
+      	initmouse(); showmouse();
+      	while(1)
+       	{
+	        getmouse();   //px py click
+     	 	if(px>=220&&px<=420&&py>=100&&py<=130&&click==1)
+	 	{	
+	   	  hidemouse();
+	   	  playerturn=1;
+	   	  gamestatus=0;
+	   	  resetboxes();
+	   	  gamescreen();
+	   	  break;
+	 	} //end if.
+      		else if(px>=220&&px<=420&&py>=160&&py<=190&&click==1)
+	        {
+	     	  hidemouse();
+	          scorescreen(); break;
+	        }
+      		else if(px>=220&&px<=420&&py>=220&&py<=250&&click==1)
+	    	{
+	      	 hidemouse();
+	         helpscreen(); break;
+	        }
       else if(px>=220&&px<=420 && py>=280 && py<=310 && click==1)
 	    {
 	      hidemouse();
@@ -152,10 +148,7 @@
        delay(100);
        cleardevice(); hidemouse(); setbkcolor(LIGHTBLUE);
        setfillstyle(1,WHITE);
-      // bar3d(230,10,420,30,5,1);
-      // settextstyle(6,0,1);
-      // outtextxy(240,2,"T I C - T A C - T O E");// graph();
-
+      
        settextstyle(1,0,2); setcolor(WHITE);
        outtextxy(20,20,combineplayernames());
 
