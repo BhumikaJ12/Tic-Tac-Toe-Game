@@ -159,7 +159,7 @@ void menuscreen()
        settextstyle(1,0,2);
        bar3d(40,430,40+100,430+30,5,1);
        outtextxy(70,430,"Exit..");
-       //graph(); getch();  //to get pixel locations...
+       
        initmouse(); showmouse();
        checkgamestatus();
        while(gamestatus==0)
@@ -231,7 +231,7 @@ void menuscreen()
 	} //end  while loop...
 
 
-	 char str[70];
+	char str[70];
 
 	if(gamestatus == 1)
 	 {
@@ -247,10 +247,7 @@ void menuscreen()
 	  circle(520,190,50);
 	  circle(500,170,10);
 	  circle(540,170,10);
- //void far arc(int x, int y, int stangle, int endangle, int radius);
-	 // arc(520,210,180,360,20); //it wont make proper smile on face.
-// void far ellipse(int x, int y, int stangle, int endangle,
-//int xradius, int yradius);	//  graph();
+ 
 	  ellipse(520,210,180,360,30,15); //happy smile.. set angle 180 - 360 degree
 	  savescore2file(gamestatus);
 
@@ -268,11 +265,8 @@ void menuscreen()
 	  circle(520,190,50); //face..
 	  circle(500,170,10); //left eye.
 	  circle(540,170,10); //right eye.
-// void far ellipse(int x, int y, int stangle, int endangle,
-//int xradius, int yradius);	//  graph();
+
 	  ellipse(520,210,0,180,30,15); //sad smile.. set angle 0 - 180 degree
-
-
 	  savescore2file(gamestatus);
 
 	  } //end else if..
@@ -369,7 +363,6 @@ void whichplayerturn()
 
 void board()
      {
-    // cout<<"box:"<<box;
   //  graph();
 	settextstyle(4,0,4); setcolor(BLUE);
 	setfillstyle(1,GREEN);
