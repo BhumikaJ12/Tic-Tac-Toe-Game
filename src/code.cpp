@@ -358,7 +358,7 @@ void whichplayerturn()
      strcpy(msg2,"");
      strcat(msg2," Turn..");
      outtextxy(430,110,msg2);
-   //  cout<<"msg:"<<msg;
+   
        } //end whichplayerturn().............
 
 void board()
